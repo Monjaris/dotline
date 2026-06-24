@@ -39,7 +39,7 @@ inline Prompter prompt(const std::string& prompt_message) {
 
 // reads input and writes it to string
 // no ansi escape character noise!
-PString read_string() {
+inline PString read_string() {
     std::string str;
     str.clear();
 
