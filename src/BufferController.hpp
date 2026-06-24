@@ -5,9 +5,9 @@
 DOTL_NAMESPACE_BEGIN(dotl)
 
 class BufCtl {
-    usize m_beg = 0uz;  // beginning of the stream, prompt's end position
-    usize m_len = 0uz;  // the length of the line between last character and `m_beg`
-    usize m_pos = 0uz;  // the position of the vcursor between `m_beg` and `m_beg+m_len`
+    usize m_beg = 0;  // beginning of the stream, prompt's end position
+    usize m_len = 0;  // the length of the line between last character and `m_beg`
+    usize m_pos = 0;  // the position of the vcursor between `m_beg` and `m_beg+m_len`
 
     void bump_len() {
         if (m_pos > m_len) {

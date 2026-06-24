@@ -1,9 +1,16 @@
 #include "dotline.hpp"
+#include <iostream>
 
 int main()
 {
-    std::string s = "abc";
-    dotl::prompt("->");
-    dotl::read_string(s);
-    std::cout << std::endl << s << std::endl;
+    int x = 0;
+    auto ps = dotl::prompt("-> ").read_string();
+    auto res = ps.parse<int>();
+    if (res.error()) std::cout << "Warning: parsing failed!\n";
+    else {
+        x = res.value();
+    }
+
+    std::cout << "input: '" << ps.string() << "'\n";
+    std::cout << "value: '" << x << "'\n";
 }

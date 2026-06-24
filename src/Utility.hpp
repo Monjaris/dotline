@@ -6,7 +6,7 @@ DOTL_NAMESPACE_BEGIN(dotl)
 
 
 namespace util {
-    consteval uint32 digit_c(usize value) {
+    constexpr uint32 digit_c(usize value) {
         uint32 count = 0;
         if (value == 0) return 1;
         while (value > 0) {

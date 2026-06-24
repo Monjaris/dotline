@@ -4,27 +4,43 @@
 // You can modify, distribute, and sell it as you wish.
 
 #pragma once
+//
 #include "BufferController.hpp"
-
-
+#include "PString.hpp"
 
 DOTL_NAMESPACE_BEGIN(dotl)
 
+// forward decl
+PString read_string();
+
+
+struct Prompter {
+    Prompter ()  = default;
+    Prompter (Prompter&&)  = delete;
+    Prompter (const Prompter&)  = delete;
+
+    [[nodiscard]]
+    PString read_string() { return ::dotl::read_string(); }
+};
+
 
 // prompt string
-static void _prompt(void* _msg) {
+static Prompter _prompt(void* _msg) {
     bufCtl().setPrompt((char*)_msg);
+    return Prompter{};
 }
-void prompt(const char* prompt_message) {
-    _prompt((char*)prompt_message);
+Prompter prompt(const char* prompt_message) {
+    return _prompt((char*)prompt_message);
 }
-void prompt(const std::string& prompt_message) {
-    _prompt((char*)prompt_message.data());
+Prompter prompt(const std::string& prompt_message) {
+    return _prompt((char*)prompt_message.data());
 }
+
 
 // reads input and writes it to string
 // no ansi escape character noise!
-void read_string(std::string& str) {
+PString read_string() {
+    std::string str;
     str.clear();
 
     TermCtl tctl = termCtl();
@@ -88,10 +104,10 @@ void read_string(std::string& str) {
             bufctl.insert(c0);
         }
     }
-
     write_ch('\n');
 
     tctl.restore();
+    return PString{str};
 }
 
 

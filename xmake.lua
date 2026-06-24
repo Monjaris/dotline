@@ -14,13 +14,6 @@ toolchain("dotline.gnu")
     set_toolset("ex",    "g++"); set_toolset("strip", "strip")
 toolchain_end()
 
-toolchain("dotline.llvm")
-    set_kind("standalone"); set_toolset("cxx", "clang++");
-    set_toolset("as",    "clang"); set_toolset("ar",    "llvm-ar")
-    set_toolset("ld",    "clang++"); set_toolset("sh",    "clang++")
-    set_toolset("ex",    "clang++"); set_toolset("strip", "llvm-strip")
-toolchain_end()
-
 set_toolchains("dotline.gnu")
 
 --- SCRIPT-BEGIN
@@ -36,15 +29,15 @@ set_toolchains("dotline.gnu")
 --- SCRIPT-END
 
 --- GLOBAL
-set_languages("c++17")
 add_includedirs("src/")
 
 --- TESTS
-target("dotline")
-    set_kind("binary")
+target("raw-input")
+    set_languages("c++20")
     add_files("tests/dotline.cpp")
 
 --- TARGETS
 target("dotline")
     set_kind("headeronly")
+    set_languages("c++17")
     add_headerfiles("src/**.hpp")
