@@ -7,7 +7,7 @@
 
 
 using usize = std::size_t;
-using isize = __ssize_t;
+using isize = ssize_t;
 using int32 = int32_t;
 using int64 = int64_t;
 using uint32 = uint32_t;

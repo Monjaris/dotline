@@ -1,4 +1,4 @@
-#pragma once
+]#pragma once
 #include "Common.hpp"
 #include <string>
 #include <charconv>
@@ -50,6 +50,8 @@ struct [[nodiscard]] PString
     }
 
 public:
+
+    PString (const std::string str): m_data(str) {}
 
     template<typename T>
     ParseRes<T> parse() = delete;
