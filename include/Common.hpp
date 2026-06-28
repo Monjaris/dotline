@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cstdlib>
 
 #define DOTL_NAMESPACE_BEGIN(_namespace_name)  namespace _namespace_name {
 #define DOTL_NAMESPACE_END()    };
